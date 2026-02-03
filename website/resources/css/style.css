@@ -1,0 +1,80 @@
+/* COLORS
+dark red: 780000
+red: c1121f
+cream: fdf0d5
+dark blue: 003049
+blue: 669bbc
+*/
+
+/*
+.navbar-nav .nav-link.active 
+{
+    color: #d1d1d1!important;
+}
+#navbar 
+{
+    background-color: #0b2545 !important; 
+#navbar .nav-link 
+{
+    color: #ffffff!important;
+}
+#navbar .nav-link.active 
+{
+    color: #d1d1d1 !important;
+}
+*/
+
+/* NAVIGATION BAR */
+.navbar 
+{
+    position: relative;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar-container
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background-color: #780000;
+}
+
+.navbar-logo
+{
+    color: #fdf0d5;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-menu
+{
+    display: flex;
+    gap: 1vw;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-link
+{
+    color: #fdf0d5;
+    text-decoration: none;
+    padding: 0.6rem 1rem;
+    display: inline-block;
+    font-size: 18px;
+}
+
+.navbar-link:hover
+{
+    text-decoration: underline;
+}
+
+.navbar-link.active
+{
+    font-weight: bold;
+    text-decoration: underline;
+}
