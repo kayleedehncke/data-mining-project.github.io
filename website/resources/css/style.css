@@ -6,75 +6,248 @@ dark blue: 003049
 blue: 669bbc
 */
 
-/*
-.navbar-nav .nav-link.active 
+/* ================================
+    Design System Variables
+=================================== */
+:root 
 {
-    color: #d1d1d1!important;
-}
-#navbar 
-{
-    background-color: #0b2545 !important; 
-#navbar .nav-link 
-{
-    color: #ffffff!important;
-}
-#navbar .nav-link.active 
-{
-    color: #d1d1d1 !important;
-}
-*/
+    --dark-red: #780000;
+    --red: #c1121f;
+    --cream: #fdf0d5;
+    --dark-blue: #003049;
+    --blue: #669bbc;
+    --white: #ffffff;
+    --black: #000000;
 
-/* NAVIGATION BAR */
-.navbar 
-{
-    position: relative;
-    width: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
+    --font-sans: "articulat-cf", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    --font-sans-heavy: "articulat-heavy-cf", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 
-.navbar-container
-{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    background-color: #780000;
+    --fs-xl: 2.25rem;
+    --fs-lg: 1.75rem;
+    --fs-md: 1.25rem;
+    --fs-sm: 1rem;
+
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+
+    --radius: 8px;
+    --shadow: 0 8px 20px rgba(0,0,0,0.08);
+    --shadow-lg: 0 18px 40px rgba(0,0,0,0.12);
 }
 
-.navbar-logo
-{
-    color: #fdf0d5;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
+/* ================================
+    Base Styles
+=================================== */
+html 
+{ 
+    scroll-behavior: smooth; 
 }
 
-.navbar-menu
+body 
 {
-    display: flex;
-    gap: 1vw;
-    list-style: none;
     margin: 0;
-    padding: 0;
+    font-family: var(--font-sans);
+    font-size: var(--fs-sm);
+    line-height: 1.6;
+    color: var(--black);
+    background-color: var(--white);
 }
 
-.navbar-link
+h1 
+{ 
+    font-size: var(--fs-xl); 
+    font-weight: 900; 
+    color: var(--dark-blue); 
+    padding-left: 3rem;
+}
+
+h2 
+{ 
+    font-size: var(--fs-lg); 
+    font-weight: 700; 
+    color: var(--dark-blue); 
+}
+
+h3 
+{ 
+    font-size: var(--fs-md); 
+    font-weight: 600; 
+    color: var(--dark-blue); 
+}
+
+p  
+{ 
+    font-size: var(--fs-sm); 
+    font-weight: 400; 
+    color: var(--black); 
+}
+
+img 
+{ 
+    max-width: 100%; 
+    height: auto; 
+    border-radius: var(--radius); 
+}
+
+
+/* ================================
+    Layout Helpers
+=================================== */
+.container 
+{ 
+    margin: 0 auto; 
+    padding: 0 var(--space-md); 
+}
+
+.section 
+{ 
+    padding: var(--space-xl) var(--space-xl); 
+}
+
+/* ================================
+    Navigation Bar
+=================================== */
+
+.site-header
 {
-    color: #fdf0d5;
+    background-color: var(--dark-red);
+    color: var(--white);
+}
+
+.nav-wrap
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg) var(--space-lg);
+}
+
+.brand
+{
+    color: var(--white);
     text-decoration: none;
-    padding: 0.6rem 1rem;
-    display: inline-block;
-    font-size: 18px;
+    font-weight: 900;
+    font-family: var(--font-sans-heavy);
+    font-size: var(--fs-md);
 }
 
-.navbar-link:hover
+.nav
 {
-    text-decoration: underline;
+    display: none;
+    gap: var(--space-lg);
 }
 
-.navbar-link.active
+.nav-link
 {
-    font-weight: bold;
-    text-decoration: underline;
+    color: var(--white);
+    text-decoration: none; 
+    font-weight: 600; 
+    position: relative;
 }
+
+.nav-link::after 
+{
+    content: ""; 
+    position: absolute; 
+    left: 0; 
+    bottom: -2px;
+    width: 0; 
+    height: 2px; 
+    background: var(--white);
+    transition: width 180ms ease;
+}
+
+.nav-link:hover::after, .nav-link:focus::after 
+{ 
+    width: 100%; 
+}
+
+.nav-toggle 
+{  
+    background: transparent; 
+    border: none; 
+    color: var(--white); 
+    cursor: pointer; 
+}
+
+.nav-open .nav 
+{   
+    display: flex; 
+}
+
+/* ================================
+    Responsive Navigation 
+=================================== */
+@media (min-width: 768px) 
+{
+    .nav 
+    {
+        display: flex; /* Show the nav links as a horizontal menu */
+    }
+
+    .nav-toggle 
+    {
+        display: none; /* Hide the toggle button on larger screens */
+    }
+}
+
+/* ================================
+    Hero Section
+=================================== */
+.hero-section
+{
+    background-color: var(--white);
+    padding: var(--space-xl) 0;
+}
+
+.hero-inner
+{
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.hero-text
+{
+    color: var(--black);
+}
+
+/* ================================
+    Intro Section
+=================================== */
+.intro-section
+{
+    background-color: var(--blue);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-areas: "topic stakeholders"
+                        "solution blueprint";
+    gap: var(--space-lg);
+    margin: var(--space-xl);
+}
+
+#intro-topic { grid-area: topic; }
+#intro-stakeholders { grid-area: stakeholders; }
+#intro-solutions { grid-area: solution; }
+#intro-blueprint { grid-area: blueprint; }
+
+
+/* ================================
+    Team Section
+=================================== */
+.team-section
+{
+    background-color: var(--blue);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-areas: "kaylee" 
+                        "ayush";
+    gap: var(--space-lg);
+    margin: var(--space-xl);
+}
+#team-kaylee { grid-area: kaylee; }
+#team-ayush { grid-area: ayush; }
+

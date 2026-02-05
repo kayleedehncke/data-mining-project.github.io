@@ -1,19 +1,17 @@
 <link rel="stylesheet" href="../../resources/css/style.css">
-<nav class="navbar">
-    <div class="navbar-container">
-        <a href="/" class="navbar-logo">MyWebsite</a>
-        <ul class="navbar-menu">
-            <li class="navbar-item">
-                <a href="../pages/intro.html" class="navbar-link">Introduction</a>
-            </li>
-
-            <li class="navbar-item">
-                <a href="../pages/team.html" class="navbar-link">Team</a>
-            </li>
-
-            <li class="navbar-item">
-                <a href="../pages/proposal.html" class="navbar-link">Project Proposal</a>
-            </li>
-        </ul>
+<header class="site-header">
+    <div class="container nav-wrap">
+        <a href="../pages/intro.html" class="brand">MyWebsite</a>
+        <button class="nav-toggle" aria-controls="site-nav" aria-expanded="false">
+            <span class="sr-only"></span>
+            <svg width="24" height="24" aria-hidden="true">
+            <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </button>
+        <nav id="site-nav" class="nav" aria-label="Main navigation">
+            <a href="../pages/intro.html" class="nav-link">Introduction</a>
+            <a href="../pages/team.html" class="nav-link">Team</a>
+            <a href="../pages/proposal.html" class="nav-link">Project Proposal</a>
+        </nav>
     </div>
-</nav>
+</header>
