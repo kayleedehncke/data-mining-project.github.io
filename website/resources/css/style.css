@@ -16,6 +16,14 @@ blue: 669bbc
     --cream: #fdf0d5;
     --dark-blue: #003049;
     --blue: #669bbc;
+
+    --brown:#4b3425; 
+    --green: #7b8f52;
+    --dark-green: #2d5a46;
+    --bblue: #20435c;
+    --ccream: #f1e3c6;
+
+
     --white: #ffffff;
     --black: #000000;
 
@@ -60,7 +68,7 @@ h1
 { 
     font-size: var(--fs-xl); 
     font-weight: 900; 
-    color: var(--dark-blue); 
+    color: var(--bblue); 
     padding-left: 3rem;
 }
 
@@ -68,14 +76,14 @@ h2
 { 
     font-size: var(--fs-lg); 
     font-weight: 700; 
-    color: var(--dark-blue); 
+    color: var(--bblue); 
 }
 
 h3 
 { 
     font-size: var(--fs-md); 
     font-weight: 600; 
-    color: var(--dark-blue); 
+    color: var(--bblue); 
 }
 
 p  
@@ -113,8 +121,8 @@ img
 
 .site-header
 {
-    background-color: var(--dark-red);
-    color: var(--white);
+    background-color: var(--brown);
+    color: var(--ccream);
 }
 
 .nav-wrap
@@ -127,7 +135,7 @@ img
 
 .brand
 {
-    color: var(--white);
+    color: var(--ccream);
     text-decoration: none;
     font-weight: 900;
     font-family: var(--font-sans-heavy);
@@ -142,7 +150,7 @@ img
 
 .nav-link
 {
-    color: var(--white);
+    color: var(--ccream);
     text-decoration: none; 
     font-weight: 600; 
     position: relative;
@@ -156,7 +164,7 @@ img
     bottom: -2px;
     width: 0; 
     height: 2px; 
-    background: var(--white);
+    background: var(--green);
     transition: width 180ms ease;
 }
 
@@ -169,7 +177,7 @@ img
 {  
     background: transparent; 
     border: none; 
-    color: var(--white); 
+    color: var(--ccream); 
     cursor: pointer; 
 }
 
@@ -220,7 +228,7 @@ img
 =================================== */
 .intro-section
 {
-    background-color: var(--blue);
+    background-color: var(--dark-green);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-template-areas: "topic stakeholders"
@@ -240,7 +248,7 @@ img
 =================================== */
 .team-section
 {
-    background-color: var(--blue);
+    background-color: var(--dark-green);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-template-areas: "kaylee" 
@@ -251,3 +259,19 @@ img
 #team-kaylee { grid-area: kaylee; }
 #team-ayush { grid-area: ayush; }
 
+/* ================================
+    Proposal Section
+=================================== */
+.proposal-section
+{
+    background-color: var(--dark-green);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-areas: "topic scope" 
+                        "questions questions";
+    gap: var(--space-lg);
+    margin: var(--space-xl);
+}
+#proposal-topic { grid-area: topic; }
+#proposal-scope { grid-area: scope; }
+#proposal-questions { grid-area: questions; }
