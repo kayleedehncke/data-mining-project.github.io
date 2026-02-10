@@ -100,6 +100,14 @@ img
     border-radius: var(--radius); 
 }
 
+cite
+{ 
+    font-size: var(--fs-sm); 
+    font-style: italic; 
+    color: var(--dark-green); 
+    margin-top: var(--space-xs); 
+    display: block;
+}
 
 /* ================================
     Layout Helpers
@@ -223,6 +231,43 @@ img
     color: var(--black);
 }
 
+.hero-img
+{
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-areas: "heading" 
+                        "images" 
+                        "caption"; */
+    display: flex;
+    gap: var(--space-md);
+}
+
+
+/* .hero-img h2
+{
+    grid-area: heading;
+} */
+
+.hero-img figure img
+{
+    
+    max-width: 100%;
+    height: auto;
+}
+
+#intro-viz .hero-inner {
+    flex-direction: column;
+}
+
+#intro-viz .hero-img {
+    display: flex;
+    gap: var(--space-md);
+}
+
+
+
+
+
 /* ================================
     Intro Section
 =================================== */
@@ -231,13 +276,15 @@ img
     background-color: var(--dark-green);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-template-areas: "topic stakeholders"
+    grid-template-areas: "viz viz"
+                        "topic stakeholders"
                         "solution blueprint";
     gap: var(--space-lg);
     margin: var(--space-xl);
 }
 
 #intro-topic { grid-area: topic; }
+#intro-viz { grid-area: viz; }
 #intro-stakeholders { grid-area: stakeholders; }
 #intro-solutions { grid-area: solution; }
 #intro-blueprint { grid-area: blueprint; }
