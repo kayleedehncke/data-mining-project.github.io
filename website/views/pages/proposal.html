@@ -4,29 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Proposal</title>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="../../resources/css/style.css">
     <link rel="stylesheet" href="https://use.typekit.net/nbh2ocj.css">
 </head>
 <body>
+
     <!-- Navigation bar -->
-    <div id="navbar-placeholder"></div> 
+    <div id="navbar-placeholder"></div>
 
     <h1 class="page-title">Project Proposal</h1>
-    <main class="section proposal-section">
-        <!-- Research Topic -->
-        <section class="hero-section" id="proposal-topic">
-            <div class="container hero-inner">
-                <div class="hero-text">
-                    <h2>Research Topic</h2>
-                </div>
-            </div>
-        </section>
 
-        <!-- Scope -->
-        <section class="hero-section" id="proposal-scop">
+    <main class="section proposal-section">
+
+        <!-- Proposal Overview -->
+        <section class="hero-section" id="proposal-overview">
             <div class="container hero-inner">
                 <div class="hero-text">
-                    <h2>Scope</h2>
+                    <h2>Proposal Overview</h2>
+
+                    <h3>Research Topic</h3>
+                    <p>
+                        This project focuses on analyzing extreme heat events across the United States to better
+                        understand how these events vary across geographic regions and change over time. By examining
+                        historical temperature patterns, the project aims to identify spatial and temporal trends
+                        in extreme heat and their broader implications for public health and climate resilience.
+                    </p>
+
+                    <h3>Scope</h3>
+                    <p>
+                        The scope of this project includes a nationwide analysis of historical extreme temperature
+                        conditions across the United States. The analysis emphasizes regional variation and
+                        long-term trends while remaining focused on descriptive and comparative patterns present
+                        in observed climate data.
+                    </p>
+
+                    <h3>Goals</h3>
+                    <p>
+                        The primary goal of this project is to identify where and when extreme heat events occur
+                        most frequently across the United States. Additional goals include comparing regional
+                        exposure to extreme heat, exploring associations between heat events and disaster-related
+                        impacts, and examining patterns that may indicate increased risk of extreme temperature days.
+                    </p>
                 </div>
             </div>
         </section>
@@ -37,23 +57,73 @@
                 <div class="hero-text">
                     <h2>Research Questions</h2>
                     <ol>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                        <li>How has the frequency of extreme heat days changed across the United States over the past several decades?</li>
+                        <li>Which regions of the United States experience the highest number of extreme heat events?</li>
+                        <li>How do extreme heat events vary seasonally across different geographic regions?</li>
+                        <li>What long-term trends are observable in the intensity of extreme heat events over time?</li>
+                        <li>How do extreme heat patterns differ between urban and rural regions?</li>
+                        <li>Are certain states or climate regions disproportionately affected by extreme heat events?</li>
+                        <li>How do years with major heat-related disaster declarations compare to years without such declarations?</li>
+                        <li>What environmental and geographic factors are most strongly associated with the occurrence of extreme heat days?</li>
+                        <li>Can historical weather patterns be used to estimate the likelihood of future extreme heat events in specific regions?</li>
+                        <li>Are there identifiable patterns that precede periods of unusually high extreme heat activity?</li>
                     </ol>
                 </div>
             </div>
         </section>
+
+        <!-- Supporting Visuals -->
+        <section class="hero-section" id="proposal-visuals">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h2>Supporting Visuals</h2>
+
+                    <p>
+                        The visualizations below provide contextual support for the research questions by illustrating
+                        spatial and temporal temperature patterns across the United States. These images are
+                        representative and are used to motivate the scope of the proposed analysis.
+                    </p>
+
+                    <!-- Image 1: Projected Temperature Change -->
+                    <figure>
+                        <img src="../../resources/img/projected-change.png"
+                             alt="Projected changes in average daytime high temperatures across the United States by mid-century">
+
+                        <figcaption>
+                            This visualization illustrates projected changes in average daytime high temperatures
+                            across U.S. regions under a high-emissions scenario. It provides contextual motivation
+                            for studying extreme heat patterns and regional vulnerability.
+                            <br><br>
+                            Source: Climate.gov, data from LOCA and PRISM.
+                        </figcaption>
+                    </figure>
+
+                    <!-- Image 2: Divisional Average Temperature -->
+                    <figure>
+                        <img src="../../resources/img/divisionalavgtemp.png"
+                             alt="Divisional average temperatures across the United States">
+
+                        <figcaption>
+                            This map shows average temperatures across U.S. climate divisions, highlighting
+                            regional variability in temperature conditions. It aligns with the project’s focus
+                            on identifying spatial patterns in extreme heat events.
+                            <br><br>
+                            Source: NOAA National Centers for Environmental Information (NCEI),
+                            Climate at a Glance.
+                            <a href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/divisional/mapping" target="_blank">
+                                https://www.ncei.noaa.gov
+                            </a>
+                        </figcaption>
+                    </figure>
+
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- JS -->
     <script src="../../resources/js/script.js"></script>
+
 </body>
 </html>
