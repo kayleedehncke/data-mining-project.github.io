@@ -231,43 +231,6 @@ cite
     color: var(--black);
 }
 
-.hero-img
-{
-    /* display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-template-areas: "heading" 
-                        "images" 
-                        "caption"; */
-    display: flex;
-    gap: var(--space-md);
-}
-
-
-/* .hero-img h2
-{
-    grid-area: heading;
-} */
-
-.hero-img figure img
-{
-    
-    max-width: 100%;
-    height: auto;
-}
-
-#intro-viz .hero-inner {
-    flex-direction: column;
-}
-
-#intro-viz .hero-img {
-    display: flex;
-    gap: var(--space-md);
-}
-
-
-
-
-
 /* ================================
     Intro Section
 =================================== */
@@ -288,6 +251,30 @@ cite
 #intro-stakeholders { grid-area: stakeholders; }
 #intro-solutions { grid-area: solution; }
 #intro-blueprint { grid-area: blueprint; }
+
+
+#intro-viz .hero-text h2
+{
+    text-align: left;
+}
+
+#intro-viz .hero-img 
+{
+    display: flex;
+    gap: var(--space-md);
+}
+
+#intro-viz .hero-img figure 
+{
+    width: 30%;  
+}
+
+#intro-viz .hero-img figure img 
+{
+    width: 100%;               
+    height: auto;             
+    border-radius: var(--radius);
+}
 
 
 /* ================================
