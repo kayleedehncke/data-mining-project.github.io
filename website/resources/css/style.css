@@ -309,3 +309,23 @@ cite
 #proposal-topic { grid-area: topic; }
 #proposal-scope { grid-area: scope; }
 #proposal-questions { grid-area: questions; }
+
+/* ================================
+    Exploration Section
+=================================== */
+.explore-section
+{
+    background-color: var(--dark-green);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-areas: "collect1"
+                        "collect2"
+                        "collect3" 
+                        "viz";
+    gap: var(--space-lg);
+    margin: var(--space-xl);
+}
+#explore-collection-1 { grid-area: collect1; }
+#explore-collection-2 { grid-area: collect2; }
+#explore-collection-3 { grid-area: collect3; }
+#explore-viz { grid-area: viz; }
