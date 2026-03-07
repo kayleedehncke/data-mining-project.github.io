@@ -18,13 +18,25 @@
         <section class="hero-section" id="explore-collection-1">
             <div class="container hero-inner">
                 <div class="hero-text">
-                    <h2>Data Source Name</h2>
+                    <h2>FEMA Disaster Declarations</h2>
 
                     <h3>Method of Collection</h3>
+                    <p>
+                        We downloaded the FEMA disaster declarations summary dataset as a CSV file. 
+                        Because the raw FEMA file contains multiple rows per disaster (often one per designated area/county), we transformed it into a state-by-day feature table that can be safely merged into the station-day NOAA data.
+                    </p>
 
                     <h3>Relevancy to Our Research</h3>
+                    <p>
+                        FEMA declarations provide a hazard/disruption context that can be joined temporally and geographically (state-day). 
+                        While declarations do not cause temperature, they help quantify co-occurring events and impacts that may align with extreme conditions and can enrich the analysis.
+                    </p>
 
-                    <h3>Before & After</h3>
+                    <h3>Before Cleaning</h3>
+                    <img src="../../resources/img/tables/disaster_raw_table.png" alt="Raw Disaster Table" class="table-image">
+                    
+                    <h3>After Cleaning</h3>
+                    <img src="../../resources/img/tables/disaster_clean_table.png" alt="Cleaned Disaster Table" class="table-image">
                 </div>
             </div>
         </section>
@@ -33,13 +45,24 @@
         <section class="hero-section" id="explore-collection-2">
             <div class="container hero-inner">
                 <div class="hero-text">
-                    <h2>Data Source Name</h2>
+                    <h2>CDC's  HHI (Heat/Health Burden & vulnerability indicators)</h2>
 
                     <h3>Method of Collection</h3>
+                    <p>
+                        We used the provided HHI dataset (2024 U.S.) containing heat-health burden indices and socio-demographic and built-environment indicators. 
+                        The raw file is at a ZIP/ZCTA geography; to merge cleanly with station-day NOAA rows without reverse-geocoding, we aggregated HHI to a statelevel table (one row per state).
+                    </p>
 
                     <h3>Relevancy to Our Research</h3>
+                    <p>
+                        HHI indicators supply static geographic features related to vulnerability and the built environment (e.g., impervious surface, tree canopy, poverty, age structure) that are useful for explaining spatial patterns and can improve model performance by capturing place-based differences.
+                    </p>
 
-                    <h3>Before & After</h3>
+                    <h3>Before Cleaning</h3>
+                    <img src="../../resources/img/tables/hhi_raw_table.png" alt="Raw HHI Table" class="table-image">
+                    
+                    <h3>After Cleaning</h3>
+                    <img src="../../resources/img/tables/hhi_clean_table.png" alt="Cleaned HHI Table" class="table-image">
                 </div>
             </div>
         </section>
@@ -48,13 +71,26 @@
         <section class="hero-section" id="explore-collection-3">
             <div class="container hero-inner">
                 <div class="hero-text">
-                    <h2>Data Source Name</h2>
+                    <h2>NOAA Daily Weather (GHCND) </h2>
 
                     <h3>Method of Collection</h3>
+                    <p>
+                        We used the NOAA Climate Data Online (CDO) API to retrieve daily maximum temperature (TMAX) observations for a curated set of U.S. weather stations. 
+                        To avoid non-U.S. stations returned by broad geographic queries, we collected stations state-by-state using state FIPS location identifiers, then sampled a small number of stations per state. 
+                        We then pulled TMAX for years 2020-2024 using batched station requests to reduce API overhead. 
+                        The resulting table is our base dataset with one row per station per day.
+                    </p>
 
                     <h3>Relevancy to Our Research</h3>
+                    <p>
+                        TMAX directly measures daily temperature extremes and supports both descriptive spatial/temporal analysis and supervised learning to predict extreme-heat days.
+                    </p>
 
-                    <h3>Before & After</h3>
+                    <h3>Before Cleaning</h3>
+                    <img src="../../resources/img/tables/noaa_raw_table.png" alt="Raw NOAA Table" class="table-image">
+                    
+                    <h3>After Cleaning</h3>
+                    <img src="../../resources/img/tables/noaa_clean_table.png" alt="Cleaned NOAA Table" class="table-image">
                 </div>
             </div>
         </section>
