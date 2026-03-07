@@ -320,7 +320,7 @@ cite
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-template-areas: "collect1"
                         "collect2"
-                        "collect3" 
+                        "collect3"
                         "viz";
     gap: var(--space-lg);
     margin: var(--space-xl);
@@ -329,3 +329,34 @@ cite
 #explore-collection-2 { grid-area: collect2; }
 #explore-collection-3 { grid-area: collect3; }
 #explore-viz { grid-area: viz; }
+
+
+#explore-viz h2 {
+    width: 100%;
+}
+
+#explore-viz .hero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.viz-images {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.viz-image {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--radius);
+}
+
+#pca { grid-column: 1 / -1; /* heading spans full width */  }
+
+#stats { grid-column: 1 / -1; /* heading spans full width */  }
