@@ -360,3 +360,24 @@ cite
 #pca { grid-column: 1 / -1; /* heading spans full width */  }
 
 #stats { grid-column: 1 / -1; /* heading spans full width */  }
+
+
+/* ================================
+    Models Section
+=================================== */
+
+.models-section
+{
+    background-color: var(--dark-green);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-areas: "fpm class"
+                        "cluster regression";
+    gap: var(--space-lg);
+    margin: var(--space-xl);
+}
+
+#models-fpm { grid-area: fpm; }
+#models-class { grid-area: class; }
+#models-cluster { grid-area: cluster; }
+#models-regression { grid-area: regression; }
