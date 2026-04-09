@@ -35,6 +35,8 @@
                         
                     </p>
 
+                    <h3>Before & After Cleaning:</h3>
+
                     <h3>Challenges & Solutions:</h3>
                     <p>
                         
@@ -45,12 +47,10 @@
                     <p><strong>Confidence:</strong></p>
                     <p><strong>Lift:</strong></p>
 
-                    <h3>Comparison & Justification:</h3>
+                    <h3>Interpretation:</h3>
                     <p>
                         
                     </p>
-
-                    <h3>Before & After Cleaning:</h3>
                 </div>
             </div>
         </section>
@@ -75,6 +75,8 @@
                     <p>
                         
                     </p>
+                    
+                    <h3>Before & After Cleaning:</h3>
 
                     <h3>Challenges & Solutions:</h3>
                     <p>
@@ -88,12 +90,10 @@
                     <p><strong>F1 Score:</strong></p>
                     <p><strong>ROC-AUC:</strong></p>
 
-                    <h3>Comparison & Justification:</h3>
+                    <h3>Interpretation:</h3>
                     <p>
                         
                     </p>
-
-                    <h3>Before & After Cleaning:</h3>
                 </div>
             </div>
         </section>
@@ -106,34 +106,56 @@
 
                     <h3>Why the model was chosen:</h3>
                     <p>
-                        
+                        K-Means was selected because it is a simple and efficient unsupervised learning algorithm for identifying natural groupings in large tabular datasets. 
+                        This dataset contains many continuous numerical variables related to temperature, elevation, vulnerability, asthma prevalence, tree cover, and other environmental and social indicators, so it was appropriate to explore whether similar observations could be grouped into clusters without using the target variable. 
+                        K-Means was especially useful here because the goal was to discover hidden structure in the data and then compare how heat-related outcomes differed across those groups.
                     </p>
 
                     <h3>Model Assumptions:</h3>
                     <p>
-                        
+                        K-Means assumes that clusters are spherical and equally sized, which may not always hold true in real-world data.
+                        It also assumes that the features are on a similar scale, which is why we performed feature scaling before applying the algorithm.
                     </p>
 
                     <h3>Hyperparameter Tuning:</h3>
                     <p>
-                        
-                    </p>
-
-                    <h3>Challenges & Solutions:</h3>
-                    <p>
-                        
-                    </p>
-
-                    <h3>Evaluation Metrics:</h3>
-                    <p><strong> Silhouette Score:</strong></p>
-                    <p><strong> Davies-Bouldin Index:</strong></p>
-
-                    <h3>Comparison & Justification:</h3>
-                    <p>
-                        
+                        The main hyperparameter tuned for K-Means was the number of clusters, `k`. 
+                        A sample of 20,000 observations was used to test values from `k = 2` to `k = 11` in order to reduce runtime while still evaluating the structure of the data. 
+                        The model was assessed using the Elbow Method, Silhouette Score, and Davies-Bouldin Index. 
+                        Among the tested values, `k = 9` produced the best clustering quality with the highest Silhouette Score of **0.2270** and the lowest Davies-Bouldin Index of **1.4933**, so it was selected as the final model. 
+                        The final model also produced an inertia value of **1,583,681.4915**. 
+                        Although the Silhouette Score is not very high, it still suggests that there is some meaningful cluster structure in the dataset, while also indicating that the clusters are only moderately separated rather than perfectly distinct.
                     </p>
 
                     <h3>Before & After Cleaning:</h3>
+                    <img src="../../resources/img/tables/cluster_raw_table.png" alt="Raw Clustering Table" class="table-image">
+                    <img src="../../resources/img/tables/cluster_clean_table.png" alt="Cleaned Clustering Table" class="table-image">
+                    
+                    <h3>Challenges & Solutions:</h3>
+                    <p>
+                        One of the main challenges faced during clustering was the moderate separation between clusters, as indicated by the relatively low Silhouette Score. 
+                        This was addressed by carefully tuning the number of clusters (`k`) and using multiple evaluation metrics (Elbow Method, Silhouette Score, and Davies-Bouldin Index) to select the optimal value of `k`. 
+                        Additionally, preprocessing steps such as feature scaling and handling missing values were crucial to ensure that the algorithm performed effectively.
+                    </p>
+                    
+                    <h3>Evaluation Metrics:</h3>
+                    <p><strong> Silhouette Score:</strong> 0.0227</p>
+                    <p><strong> Davies-Bouldin Index:</strong> 1.4933</p>
+                    <img src="../../resources/img/plots/clustering_elbow.png" alt="Elbow Method Plot" class="plot-image">
+                    <img src="../../resources/img/plots/clustering_silhouette.png" alt="Silhouette Score Plot" class="plot-image">
+                    <img src="../../resources/img/plots/clustering_db_index.png" alt="Davies-Bouldin Index Plot" class="plot-image">
+                    
+                    <h3>Interpretation:</h3>
+                    <p>
+                        The final K-Means model created 9 clusters with uneven cluster sizes, ranging from **1,826** records in Cluster 7 to **32,307** records in Cluster 6. 
+                        After clustering, the target variable `heat_related_any` was used only for interpretation, not for training. 
+                        The heat-related event rate varied noticeably across clusters, showing that the clusters captured meaningful differences in risk. 
+                        The highest heat-related rates appeared in **Cluster 4 (0.0114)**, **Cluster 6 (0.0105)**, and **Cluster 8 (0.0088)**, while the lowest rate appeared in **Cluster 0 (0.0012)**. 
+                        These higher-risk clusters generally showed combinations of elevated temperature, higher poverty or vulnerability measures, and in some cases higher impervious surface percentages, suggesting that both environmental exposure and social vulnerability may contribute to greater heat-related risk. 
+                        Overall, the K-Means model was useful for segmenting the data into interpretable groups, even though the separation between clusters was moderate rather than strong.
+                    </p>
+                    <img src="../../resources/img/plots/clustering_cluster_counts.png" alt="Cluster Counts Plot" class="plot-image">
+                    <img src="../../resources/img/plots/clustering_pca.png" alt="PCA Projection Plot" class="plot-image">
                 </div>
             </div>
         </section>
@@ -158,6 +180,8 @@
                     <p>
                         
                     </p>
+                    
+                    <h3>Before & After Cleaning:</h3>
 
                     <h3>Challenges & Solutions:</h3>
                     <p>
@@ -169,12 +193,22 @@
                     <p><strong>MSE:</strong></p>
                     <p><strong>R-squared Score:</strong></p>
 
-                    <h3>Comparison & Justification:</h3>
+                    <h3>Interpretation:</h3>
+                    <p>
+
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Comparison & Justification -->
+        <section class="hero-section" id="models-final">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h2>Final Comparison & Justification</h2>
                     <p>
                         
                     </p>
-
-                    <h3>Before & After Cleaning:</h3>
                 </div>
             </div>
         </section>
