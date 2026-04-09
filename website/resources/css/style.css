@@ -372,7 +372,8 @@ cite
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-template-areas: "fpm class"
-                        "cluster regression";
+                        "cluster regression"
+                        "final final";
     gap: var(--space-lg);
     margin: var(--space-xl);
 }
@@ -381,3 +382,4 @@ cite
 #models-class { grid-area: class; }
 #models-cluster { grid-area: cluster; }
 #models-regression { grid-area: regression; }
+#models-final { grid-area: final; }
