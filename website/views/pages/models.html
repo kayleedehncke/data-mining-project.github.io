@@ -22,35 +22,44 @@
 
                     <h3>Why the model was chosen:</h3>
                     <p>
-                        
+                        The FP-Growth algorithm was chosen for its efficiency in mining frequent patterns without candidate generation. 
+                        This makes it particularly suitable for large datasets like ours, where computational efficiency is critical.
                     </p>
 
                     <h3>Model Assumptions:</h3>
                     <p>
-                        
+                        The FP-Growth algorithm assumes that the dataset can be represented as a set of transactions, where each transaction contains a list of items. 
+                        It also assumes that the data is preprocessed to remove noise and irrelevant features.
                     </p>
 
                     <h3>Hyperparameter Tuning:</h3>
                     <p>
-                        
+                        The key hyperparameters tuned were the minimum support threshold and the maximum length of itemsets. 
+                        A minimum support of 0.001 was selected to ensure that rare but potentially meaningful patterns were captured. 
+                        The maximum itemset length was set to 2 to focus on pairwise relationships.
                     </p>
 
                     <h3>Before & After Cleaning:</h3>
+                    <img src="../../resources/img/tables/fp_raw_table.png" alt="Raw Frequent Pattern Table" class="table-image">
+                    <img src="../../resources/img/tables/fp_clean_table.png" alt="Cleaned Frequent Pattern Table" class="table-image">
 
                     <h3>Challenges & Solutions:</h3>
                     <p>
-                        
+                        One challenge was the rarity of the target event, "heat_event_yes," which made it difficult to generate meaningful rules with high confidence. 
+                        This was addressed by lowering the confidence threshold and focusing on lift as a more appropriate metric for rare outcomes.
                     </p>
+                    <img src="../../resources/img/plots/fp_growth_graph.png" alt="FP-Growth Tree Plot" class="plot-image">
 
                     <h3>Evaluation Metrics:</h3>
-                    <p><strong>Support:</strong></p>
-                    <p><strong>Confidence:</strong></p>
-                    <p><strong>Lift:</strong></p>
+                    <img src="../../resources/img/tables/fp_heat_rules.png" alt="Frequent Itemsets Table" class="table-image">
 
                     <h3>Interpretation:</h3>
                     <p>
-                        
+                        The resulting itemsets and rules highlighted key factors associated with heat-related events. 
+                        High vulnerability indicators such as high overall score, high HHB score, high poverty, and high temperature were strongly associated with the target event. 
+                        These insights can inform targeted interventions to mitigate heat-related risks.
                     </p>
+                    <img src="../../resources/img/plots/fp_growth_tree_heat_rule.png" alt="Frequent Itemsets Plot" class="plot-image">
                 </div>
             </div>
         </section>
@@ -63,37 +72,54 @@
 
                     <h3>Why the model was chosen:</h3>
                     <p>
-                        
+                        A decision tree classifier was chosen for its interpretability and ability to handle both numerical and categorical data. 
                     </p>
 
                     <h3>Model Assumptions:</h3>
                     <p>
-                        
+                        The decision tree model assumes that the data is independent and identically distributed, and that the relationships between features and the target variable are additive.
                     </p>
 
                     <h3>Hyperparameter Tuning:</h3>
                     <p>
-                        
+                        For the decision tree model, preprocessing was essential because the raw dataset contained a mix of date, categorical, identifier, and numeric variables. 
+                        The original file had 196,943 rows and 23 columns, and the target variable heat_related_any was extremely imbalanced, with only 1,162 positive cases (0.59%) and 195,781 negative cases (99.41%). 
+                        To make the data usable for modeling, the date column was converted to a datetime format and expanded into new temporal features (year, month, day, dayofyear, weekday, and is_weekend) so the model could capture seasonality and calendar effects. 
+                        The original date field was then dropped, and the id column was removed because it duplicated station. 
+                        In addition, leakage-related variables such as heat_related_disaster_count, heat_related_area_count, heat_related_counties_affected, and disasters_count were excluded so the model would not learn from variables that directly reveal the outcome. 
+                        After preprocessing, the model used 22 input features, including 20 numeric variables and 2 categorical variables (station and state). 
+                        Although decision trees are often described as handling categorical data well conceptually, the scikit-learn implementation still requires numeric input, so station and state were one-hot encoded, while missing numeric values were imputed with the median and missing categorical values with the most frequent category.
                     </p>
                     
                     <h3>Before & After Cleaning:</h3>
+                    <img src="../../resources/img/tables/trees_raw_table.png" alt="Raw Classification Table" class="table-image">
+                    <img src="../../resources/img/tables/trees_clean_table.png" alt="Cleaned Classification Table" class="table-image">
 
                     <h3>Challenges & Solutions:</h3>
                     <p>
-                        
+                        The main challenge was the severe class imbalance in the target variable. 
+                        Solutions included using class weights to balance the classes and employing hyperparameter tuning to optimize the model's performance on the minority class.
                     </p>
 
                     <h3>Evaluation Metrics:</h3>
-                    <p><strong>Accuracy:</strong></p>
-                    <p><strong>Precision:</strong></p>
-                    <p><strong>Recall:</strong></p>
-                    <p><strong>F1 Score:</strong></p>
-                    <p><strong>ROC-AUC:</strong></p>
+                    <p><strong>Accuracy:</strong> 0.8071</p>
+                    <p><strong>Precision:</strong> 0.0264</p>
+                    <p><strong>Recall:</strong> 0.8800</p>
+                    <p><strong>F1 Score:</strong> 0.0513</p>
+                    <p><strong>ROC-AUC:</strong> 0.8874</p>
+                    <img src="../../resources/img/plots/trees_confusion_matrix_test.png" alt="Classification Confusion Matrix" class="plot-image">
 
                     <h3>Interpretation:</h3>
                     <p>
-                        
+                        A baseline tree with class_weight="balanced", max_depth=5, and min_samples_leaf=10 was first trained to address the severe class imbalance. 
+                        On the validation set, it achieved 79.52% accuracy, 70.69% recall for the positive class, 0.7834 ROC-AUC, and 0.0238 PR-AUC, but its precision was only 0.0201, meaning it produced many false positives. 
+                        Hyperparameter tuning with RandomizedSearchCV selected criterion='entropy', max_depth=10, min_samples_split=10, min_samples_leaf=1, and ccp_alpha=0.001, using average precision as the tuning metric because accuracy alone would be misleading on such an imbalanced dataset. 
+                        After retraining the tuned model on the combined training and validation sets, the final test results were 80.71% accuracy, 88.00% recall, 0.0264 precision, 0.0513 F1-score, 0.8874 ROC-AUC, and 0.0580 PR-AUC. 
+                        These results show that the model was relatively strong at detecting rare heat-related events but weak at making highly precise positive predictions. 
+                        In other words, the decision tree is useful when the project prioritizes finding as many true heat-related cases as possible, but its low precision suggests that many flagged events are false alarms, which is a common challenge in highly imbalanced classification problems.
                     </p>
+                    <img src="../../resources/img/plots/trees_feature_importance.png" alt="Feature Importance Plot" class="plot-image">
+                    <img src="../../resources/img/plots/trees_decision_tree.png" alt="Decision Tree Plot" class="plot-image">
                 </div>
             </div>
         </section>
@@ -168,35 +194,59 @@
 
                     <h3>Why the model was chosen:</h3>
                     <p>
-                        
+                        Logistic regression was chosen for its simplicity, interpretability, and suitability for binary classification problems. 
+                        It allows us to model the probability of a heat-related event occurring based on the various environmental and social features in the dataset, while also providing insights into the importance of each feature through its coefficients. 
+                        Additionally, logistic regression is less prone to overfitting compared to more complex models, making it a good choice for this dataset, which has a relatively low number of positive cases (heat-related events) compared to negative cases.
                     </p>
 
                     <h3>Model Assumptions:</h3>
                     <p>
-                        
+                        Logistic regression assumes a linear relationship between the independent variables and the log-odds of the dependent variable. 
+                        It also assumes that the observations are independent, there is no multicollinearity among the independent variables, and that the dataset is sufficiently large to provide reliable estimates. 
+                        In this case, the target variable `heat_related_any` is binary, making logistic regression an appropriate choice for modeling the probability of a heat-related event occurring based on the various environmental and social features in the dataset.
                     </p>
 
                     <h3>Hyperparameter Tuning:</h3>
                     <p>
-                        
+                        Before training the logistic regression model, the dataset was carefully preprocessed so it matched the model's requirements. 
+                        The target variable was heat_related_any, which is a binary outcome, making logistic regression an appropriate choice. 
+                        Several columns were removed because they would cause target leakage, including heat_related_disaster_count, heat_related_area_count, heat_related_counties_affected, and disasters_count, since these variables already contain information closely tied to the outcome being predicted. 
+                        The original date column was converted into more useful numerical features such as year, month, dayofyear, and dayofweek, while redundant columns like id and state_fips were excluded. 
+                        After preprocessing, the feature matrix contained 19 input variables. 
+                        The data was then split using stratified sampling into training, validation, and test sets so that the very small positive class rate remained consistent across all sets. 
+                        Because logistic regression requires numeric input, the categorical features station and state were one-hot encoded, numerical features were imputed with the median if needed and scaled using StandardScaler, and the final transformed training data expanded to 169 features.
                     </p>
                     
                     <h3>Before & After Cleaning:</h3>
+                    <img src="../../resources/img/tables/regression_raw_table.png" alt="Raw Regression Table" class="table-image">
+                    <img src="../../resources/img/tables/regression_clean_table.png" alt="Cleaned Regression Table" class="table-image">
 
                     <h3>Challenges & Solutions:</h3>
                     <p>
-                        
+                        One of the main challenges was the highly imbalanced nature of the dataset, with a very small positive class rate. 
+                        This was addressed by using class_weight="balanced" to give more weight to the minority class during training. 
+                        Additionally, the classification threshold was adjusted to optimize the F1-score, which is more appropriate for imbalanced datasets than accuracy.
                     </p>
 
                     <h3>Evaluation Metrics:</h3>
-                    <p><strong>RMSE:</strong></p>
-                    <p><strong>MSE:</strong></p>
-                    <p><strong>R-squared Score:</strong></p>
+                    <p><strong>Accuracy:</strong> 0.9752</p>
+                    <p><strong>Precision:</strong> 0.0440</p>
+                    <p><strong>Recall:</strong> 0.1552</p>
+                    <p><strong>F1-Score:</strong> 0.0686</p>
+                    <p><strong>ROC-AUC:</strong> 0.7895</p>
 
                     <h3>Interpretation:</h3>
                     <p>
-
+                        The model results show both the strengths and limitations of logistic regression on this highly imbalanced dataset. 
+                        The baseline model with class_weight="balanced" achieved a validation ROC-AUC of 0.7812, which suggested the model could separate the classes reasonably well, but its precision was extremely low because positive cases were rare. 
+                        After tuning, the best hyperparameters were C = 0.01 with class_weight = "balanced", and the classification threshold was adjusted to 0.8269 to improve the F1-score. 
+                        On the final test set, the model achieved an accuracy of 0.9752, precision of 0.0440, recall of 0.1552, F1-score of 0.0686, and ROC-AUC of 0.7895. 
+                        The confusion matrix showed 28,782 true negatives, 586 false positives, 147 false negatives, and 27 true positives. 
+                        Although the accuracy appears high, this is mainly because most observations belong to the negative class, so metrics like recall, F1-score, and ROC-AUC provide a more meaningful evaluation. 
+                        Overall, the model was moderately effective at distinguishing heat-related events, but the low precision and recall indicate that predicting rare events in this dataset remains challenging.
                     </p>
+                    <img src="../../resources/img/plots/regression_confusion_matrix.png" alt="Regression Confusion Matrix" class="plot-image">
+                    <img src="../../resources/img/plots/regression_roc_curve.png" alt="Regression ROC Curve" class="plot-image">
                 </div>
             </div>
         </section>
