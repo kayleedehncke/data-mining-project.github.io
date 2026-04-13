@@ -148,8 +148,8 @@
                         The main hyperparameter tuned for K-Means was the number of clusters, `k`. 
                         A sample of 20,000 observations was used to test values from `k = 2` to `k = 11` in order to reduce runtime while still evaluating the structure of the data. 
                         The model was assessed using the Elbow Method, Silhouette Score, and Davies-Bouldin Index. 
-                        Among the tested values, `k = 9` produced the best clustering quality with the highest Silhouette Score of **0.2270** and the lowest Davies-Bouldin Index of **1.4933**, so it was selected as the final model. 
-                        The final model also produced an inertia value of **1,583,681.4915**. 
+                        Among the tested values, `k = 9` produced the best clustering quality with the highest Silhouette Score of 0.2270  and the lowest Davies-Bouldin Index of 1.4933, so it was selected as the final model. 
+                        The final model also produced an inertia value of 1,583,681.4915. 
                         Although the Silhouette Score is not very high, it still suggests that there is some meaningful cluster structure in the dataset, while also indicating that the clusters are only moderately separated rather than perfectly distinct.
                     </p>
 
@@ -173,10 +173,10 @@
                     
                     <h3>Interpretation:</h3>
                     <p>
-                        The final K-Means model created 9 clusters with uneven cluster sizes, ranging from **1,826** records in Cluster 7 to **32,307** records in Cluster 6. 
+                        The final K-Means model created 9 clusters with uneven cluster sizes, ranging from 1,826 records in Cluster 7 to 32,307 records in Cluster 6. 
                         After clustering, the target variable `heat_related_any` was used only for interpretation, not for training. 
                         The heat-related event rate varied noticeably across clusters, showing that the clusters captured meaningful differences in risk. 
-                        The highest heat-related rates appeared in **Cluster 4 (0.0114)**, **Cluster 6 (0.0105)**, and **Cluster 8 (0.0088)**, while the lowest rate appeared in **Cluster 0 (0.0012)**. 
+                        The highest heat-related rates appeared in Cluster 4 (0.0114), Cluster 6 (0.0105), and Cluster 8 (0.0088), while the lowest rate appeared in Cluster 0 (0.0012). 
                         These higher-risk clusters generally showed combinations of elevated temperature, higher poverty or vulnerability measures, and in some cases higher impervious surface percentages, suggesting that both environmental exposure and social vulnerability may contribute to greater heat-related risk. 
                         Overall, the K-Means model was useful for segmenting the data into interpretable groups, even though the separation between clusters was moderate rather than strong.
                     </p>
@@ -256,8 +256,15 @@
             <div class="container hero-inner">
                 <div class="hero-text">
                     <h2>Final Comparison & Justification</h2>
+                    <h3>Best Overall Approach</h3>
                     <p>
-                        
+                        K-Mean clustering worked best for our project because it effectively segmented the data into meaningful groups based on the various environmental and social features, which allowed us to identify clusters with different levels of heat-related risk.
+                        This approach was less affected by the dataset's severe class imbalance and provided actionable insights into how different combinations of features contribute to heat-related vulnerability, which is crucial for informing targeted high-risk groups.
+                    </p>
+                    <h3>Why Clustering Outperformed Logistic Regression</h3>
+                    <p>
+                        Logistic regression struggled with the extreme class imbalance and the complexity of relationships between features and the target variable, leading to low precision and recall. 
+                        In contrast, K-Means clustering was able to uncover natural groupings in the data without relying on the target variable, which allowed it to identify clusters with varying heat-related event rates and provided a more nuanced understanding of risk factors.
                     </p>
                 </div>
             </div>
