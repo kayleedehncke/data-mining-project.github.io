@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conclusion</title>
+    <link rel="stylesheet" href="../../resources/css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/nbh2ocj.css">
+</head>
+<body>
+    <!-- Navigation bar -->
+    <div id="navbar-placeholder"></div> 
+
+    <h1 class="page-title">Conclusion</h1>
+    <main class="section conclusion-section">
+        
+        <!-- Non-technical Summary -->
+        <section class="hero-section" id="conclusion-summary">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h2>Non-Technical Summary</h2>
+                    <p>
+                        This project examined why heat-related events occur in the United States and whether they can be predicted using a combination of weather data, seasonal patterns, and community vulnerability indicators. 
+                        By merging daily temperature records from NOAA, disaster declarations from FEMA, and vulnerability metrics from the CDC Heat & Health Index, the project created a unified dataset covering nearly 200,000 station-day observations across 40 states from 2020–2024.
+                    </p>
+                    <p>
+                        Four different analytical approaches were used to understand heat risk from multiple angles. 
+                        Logistic regression and decision trees attempted to predict when a heat event would occur, while K-means clustering explored whether natural groups of conditions emerged in the data. 
+                        FP-growth association rule mining identified simple, interpretable patterns that frequently co-occur with heat events during warm months.
+                    </p>
+                    <p>
+                        Across all methods, the same conclusion emerged: heat events are not driven by temperature alone. 
+                        High temperatures matter, but so do factors such as poverty, health burdens, low tree cover, and other indicators of community vulnerability. 
+                        The models also confirmed strong seasonal patterns, with most heat events occurring between June and September.
+                    </p>
+                    <p>
+                        Overall, the analysis shows that heat-related emergencies arise from a combination of environmental exposure and social vulnerability. 
+                        Understanding these interactions can help communities better prepare for extreme heat and reduce the risks associated with it.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Key Insights and Findings -->
+        <section class="hero-section" id="conclusion-insights">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h2>Key Insights and Findings</h2>
+                    <p>Several high-level insights emerged consistently across the notebooks.</p>
+                    <p>
+                        <strong>Rare events are rare but not patternless.</strong> 
+                        The positive class is less than 1% of the full dataset, which makes the task difficult, but the models do not behave randomly. 
+                        ROC-AUC values near 0.79 for logistic regression and 0.89 for the final decision tree show that the feature set contains real predictive information.
+                    </p>
+                    <p>
+                        <strong>Seasonality is a major driver.</strong>
+                        Monthly event rates rise sharply in June and remain highest through September. 
+                        The decision tree ranked dayofyear, day, year, and weekday among the most important features, and the FP-growth notebook focused on May through September because that period contained nearly three quarters of the positive events.
+                    </p>
+                    <p>
+                        <strong>Vulnerability matters alongside temperature.</strong>
+                        Weather alone does not explain the results. 
+                        overall_score, hhb_score, poverty rate, asthma prevalence, imperviousness, and tree cover repeatedly appeared as informative variables. 
+                        This supports the substantive interpretation that heat-event risk reflects the interaction between exposure and community context.
+                    </p>
+                    <p>
+                        <strong>Leakage prevention is essential.</strong>
+                        The removed disaster-count variables were too close to the target to be used honestly in prediction. 
+                        Their exclusion makes the problem harder, but also makes the final results more credible.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-World Impacts -->
+        <section class="hero-section" id="conclusion-impacts">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h2>Real-World Impacts</h2>
+                    <p>
+                        The findings from this project have several meaningful real-world implications. 
+                        First, the models highlight combinations of temperature, season, and vulnerability that precede heat events, which can support more targeted early-warning systems. 
+                        Agencies could issue alerts tailored to communities with higher vulnerability scores rather than relying on broad statewide warnings.
+                    </p>
+                    <p>
+                        Second, the results reinforce the importance of equitable climate adaptation. 
+                        Communities with higher poverty, worse health outcomes, or limited tree cover face greater heat risk, suggesting that cooling centers, shade infrastructure, and green-space investments should be prioritized in these areas.
+                    </p>
+                    <p>
+                        Third, emergency planners can use cluster-based insights to anticipate which regions are likely to experience heat stress even before events occur. 
+                        This can improve resource allocation, staffing, and public-health preparedness.
+                    </p>
+                    <p>
+                        Finally, the association-rule findings show that environmental factors such as impervious surfaces and low tree cover frequently co-occur with heat events. 
+                        This supports urban-planning strategies like reflective roofing, increased vegetation, and heat-resilient infrastructure to reduce long-term risk.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Limitations, Improvements and Future Work -->
+        <section class="hero-section" id="conclusion-limitations">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h2>Limitations and Threats to Validity</h2>
+                    <p>
+                        This project has several limitations. 
+                        The first is the extreme rarity of the positive class. 
+                        Even the stronger supervised results come with low precision, which means many flagged observations are false positives. 
+                        That is not a bug in the evaluation; it is a direct consequence of the base rate. 
+                        In real deployment, threshold choice would need to depend on the cost of misses versus false alarms.
+                    </p>
+                    <p>
+                        Second, the supervised models used stratified random splits rather than a strictly forward-looking temporal split. 
+                        This was faithful to the notebook implementations, but it likely makes the evaluation somewhat more optimistic than a true forecasting setup in which future years are held out entirely. 
+                        A stronger future design would use rolling-origin evaluation or year-based backtesting.
+                    </p>
+                    <p>
+                        Third, some highly weighted features are geographic indicators such as station or state dummies. 
+                        These can be useful within-sample, but they may also absorb location-specific regularities that do not generalize cleanly to unseen stations or policy contexts. 
+                        Similarly, the cluster profiles and FP-growth rules are descriptive summaries of this particular merged dataset rather than universal statements about heat risk.
+                    </p>
+                    <p>
+                        Fourth, the FP-growth results depend heavily on discretization.
+                        Changing the binning rule or the selected features could change the discovered itemsets. 
+                        K-means has a related limitation: its Euclidean-distance objective assumes roughly spherical clusters in standardized feature space, which may not perfectly reflect the true geometry of the data.
+                    </p>
+                    <p>
+                        Finally, the project studies heat-related events at the granularity of station-day observations joined with state-level vulnerability features. 
+                        That means some important local context is smoothed out.
+                        More granular population, land cover, humidity, or lagged tempera ture information could improve both prediction and interpretation.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Future Work -->
+        <section class="hero-section" id="conclusion-future">
+            <div class="container hero-inner">
+                <div class="hero-text">
+                    <h2>Improvements and Future Work</h2>
+                    <p>
+                        There are several natural directions for extending this project.
+                        A first improvement would be to move from random stratified splitting to a temporal validation scheme in which entire future periods are held out. 
+                        That would better match the real use case of anticipating future heat-related events. 
+                        A second improvement would be to incorporate additional weather features such as multi-day heat accumulation, humidity, nighttime temperature, or persistence metrics. 
+                        Heat impacts often depend on sustained exposure rather than one-day TMAX alone.
+                    </p>
+                    <p>
+                        A third extension would be to calibrate the supervised models and explicitly optimize decision thresholds for different policy goals. 
+                        For example, an emergency-preparedness setting might accept lower precision in exchange for higher recall, while a limited-resource intervention setting might require high precision. 
+                        A fourth extension would be to compare the current interpretable models with more complex methods such as random forests or gradient boosting. 
+                        Those methods were not part of this project, but they could serve as future baselines once the current leakage-aware workflow is established.
+                    </p>
+                    <p>
+                        Finally, the unsupervised side of the project could be enriched by cluster stability analysis, alternative clustering algorithms, and multi-item antecedents in association-rule mining. 
+                        These additions would not replace the current notebooks, but they would make the descriptive analysis more robust.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="../../resources/js/script.js"></script>
+</body>
+</html>
